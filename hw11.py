@@ -5,6 +5,6 @@ def letters_range(start, stop, step=None):
         print([chr(char) for char in range(ord(start), ord(stop), step)])
 
 
-letters_range('p', 'g', -2)
+letters_range('a', 'h')
 
 
