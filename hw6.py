@@ -40,7 +40,7 @@ res_sum = 0
 while i < 1000000:
     if find_base10_palindrom(i) and find_base2_palindrom(i):
         res_sum += i
-        # print(i)
+        print(i)
     i += 1
 
-print(res_sum)
+print(bin(585))
