@@ -26,7 +26,7 @@ def write_file(datas):
         file_to_w.write('\n')
 
 
-etc_passwd = read_file('/etc/passwd')
+etc_passwd = read_file('passwd')
 i = 0
 res_dict_pswd = {}
 # считаем количество пользователей каждой оболочки
@@ -39,7 +39,7 @@ while i < len(etc_passwd):
 
 write_file(res_dict_pswd)
 
-etc_group = read_file('/etc/group')
+etc_group = read_file('group')
 del etc_group[len(etc_group) - 1]
 
 name_set = {}

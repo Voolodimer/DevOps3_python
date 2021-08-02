@@ -14,5 +14,10 @@ def find_steps(number):
 
 
 n = 0
-find_steps(int(input()))
-print(n)
+
+# для каждого 10-го числа от 1 до 100
+for i in range(1, 100, 10):
+    find_steps(i)
+    print(n)
+    n = 0
+

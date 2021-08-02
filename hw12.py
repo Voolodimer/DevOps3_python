@@ -12,4 +12,4 @@ def fibo(x):
     return res
 
 
-print(fibo(6))
+print(fibo(5432))

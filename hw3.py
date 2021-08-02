@@ -12,4 +12,3 @@ for key in res_dict:
         print(str(max_el) + ' ' + key)
 
 
-
