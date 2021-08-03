@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from geopy.geocoders import Nominatim
 
 geolocator = Nominatim(user_agent="hw16")
