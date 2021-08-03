@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Создать сотрудника Mary, пользуясь классом
 # Employee и перенести его в другую программу,
 # используя модуль Pickle и файловую систему.
@@ -22,7 +24,6 @@ import pickle
 class Employee:
     def __init__(self, name):
         self.name = name
-    pass
 
 
 # Mary = Employee('Mary')

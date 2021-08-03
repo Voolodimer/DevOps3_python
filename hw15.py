@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Написать класс router.
 # Должен иметь методы добавить/удалить/вывести список ip address.
 # Должен иметь методы добавить/удалить/вывести список ip routes.
@@ -26,14 +28,19 @@
 
 import os
 import netifaces
+import subprocess
 
 
 class Router:
-    def add_ip_address(self, name, ip_address, netmask):
-        return os.system(f"ifconfig {name} {ip_address} netmask {netmask}")
+    '''
 
-    def del_ip_address(self, name, ip_address):
-        return os.system(f"ifconfig {name} del {ip_address}")
+    '''
+    def add_ip_address(self, iface_name, ip_address, netmask):
+        iface_name, ip_address, netmask = map(str, (iface_name, ip_address, netmask))
+        return os.system(f"sudo -S ifconfig {iface_name} {ip_address} netmask {netmask}")
+
+    def del_ip_address(self, iface_name):
+        return os.system(f"sudo -S ifconfig {iface_name} 0.0.0.0")
         # ip addr del 192.168.0.77/24 dev eth0
 
     def show_ip_address(self):
@@ -43,18 +50,29 @@ class Router:
                 print(iface_details[netifaces.AF_INET])
                 # print(iface_details[netifaces.AF_INET][0]['addr'])
 
-    def add_ip_routes(self,ip_addr_mask, gateway):
-        return os.system(f"route add -net {ip_addr_mask} via {gateway}")
+    def add_ip_routes(self, ip_addr_mask, gateway, host_or_net):
+        try:
+            subprocess.call(f"sudo -S route add -{host_or_net} {ip_addr_mask} gw {gateway}", shell=True)
+            print('ok')
+            # os.system(f"sudo -S route add -net {ip_addr_mask} gw {gateway}")
+        except Exception as e:
+            print('exception', e)
         # route add -net 10.10.0.0/16 gw 10.10.1.1
         # ip route add 10.10.0.0/16 via 10.10.1.1
 
-    def del_ip_routes(self, ip_address, netmask):
-        return os.system(f"route delete -net {ip_address} netmask {netmask}")
+    def del_ip_routes(self, ip_address, gateway, host_or_net):
+        return subprocess.call(f"sudo -S route delete -{host_or_net} {ip_address} gw {gateway}", shell=True)
         # route delete -net 10.10.0.0 netmask 255.255.0.0
 
     def show_ip_routes(self):
-        return os.system("ip route")
+        return subprocess.call("ip route", shell=True)
 
 
+# Router.show_ip_routes(Router)
+# Router.add_ip_address(Router, 'enp4s0', '192.168.0.125', '255.255.255.0')
+# Router.del_ip_address(Router, 'enp4s0')
 # Router.show_ip_address(Router)
+# Router.show_ip_routes(Router)
+# Router.add_ip_routes(Router, '10.32.234.1', '192.168.0.1', 'host')
+# Router.del_ip_routes(Router, '10.32.234.1', '192.168.0.1', 'host')
 # Router.show_ip_routes(Router)

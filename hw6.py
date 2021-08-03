@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # https://projecteuler.net/problem=36
 #
 # The decimal number, 585 = 1001001001 in binary, is palindromic in both bases.
