@@ -24,7 +24,7 @@ def read_file(file_name):
 def write_file(datas):
     with open('output.txt', 'a') as file_to_w:
         for el in datas:
-            file_to_w.write(el + '-' + str(datas[el]) + ' ; ')
+            file_to_w.write(el + '-' + str(datas[el]) + ' ;\n')
         file_to_w.write('\n')
 
 
@@ -69,9 +69,9 @@ while i < len(etc_group):
     if len(etc_group[i].split(':')[3]) > 1:
         for name in etc_group[i].split(':')[3].split(','):
             res_str_grp += name_set[name] + ','
-        res_str_grp += ' '
+        res_str_grp += '\n'
     else:
-        res_str_grp += ' '
+        res_str_grp += '\n'
         i += 1
         continue
     i += 1

@@ -22,25 +22,19 @@
 # Вычислить число шагов для числа n, согласно гипотезе
 # Коллатца необходимых для достижения этим числом единицы.
 
-def find_steps(number):
-    global n
+
+def find_steps(number, ctr):
+    if number == 1:
+        print(ctr)
+        return
     if number % 2 == 0:
-        number = number // 2
-        n += 1
-        if number == 1:
-            return
-        find_steps(number)
+        find_steps(number // 2, ctr + 1)
     else:
-        number = number * 3 + 1
-        n += 1
-        find_steps(number)
+        find_steps(number * 3 + 1, ctr + 1)
 
-
-n = 0
 
 # для каждого 10-го числа от 1 до 100
 for i in range(1, 100, 10):
-    find_steps(i)
-    print(n)
     n = 0
+    find_steps(i, n)
 
