@@ -68,11 +68,3 @@ class Router:
         return subprocess.call("ip route", shell=True)
 
 
-# Router.show_ip_routes(Router)
-# Router.add_ip_address(Router, 'enp4s0', '192.168.0.125', '255.255.255.0')
-# Router.del_ip_address(Router, 'enp4s0')
-# Router.show_ip_address(Router)
-# Router.show_ip_routes(Router)
-# Router.add_ip_routes(Router, '10.32.234.1', '192.168.0.1', 'host')
-# Router.del_ip_routes(Router, '10.32.234.1', '192.168.0.1', 'host')
-# Router.show_ip_routes(Router)
