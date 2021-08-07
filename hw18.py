@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from PIL import Image
 sizes = [(90, 90), (130, 130), (200, 200), (250, 250)]
 files = ['hw17.jpg', 'hw18_1.jpg', 'hw18_2.jpg', 'hw18_3.jpg']
