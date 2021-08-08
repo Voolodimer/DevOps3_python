@@ -32,39 +32,60 @@ import subprocess
 
 
 class Router:
-    '''
+    """
+    router is a test class
+    """
 
-    '''
+    def __init__(self):
+        self.route_table = []
+
     def add_ip_address(self, iface_name, ip_address, netmask):
-        iface_name, ip_address, netmask = map(str, (iface_name, ip_address, netmask))
-        return os.system(f"sudo -S ifconfig {iface_name} {ip_address} netmask {netmask}")
+        """
+        :param iface_name: - interface name
+        :param ip_address:
+        :param netmask:
+        :return: 1 or 0
+        """
+        return 1
 
     def del_ip_address(self, iface_name):
-        return os.system(f"sudo -S ifconfig {iface_name} 0.0.0.0")
+        '''
+        :param iface_name:
+        :return:
+        '''
+        return 1
         # ip addr del 192.168.0.77/24 dev eth0
 
     def show_ip_address(self):
-        for iface in netifaces.interfaces():
-            iface_details = netifaces.ifaddresses(iface)
-            if netifaces.AF_INET in iface_details:
-                print(iface_details[netifaces.AF_INET])
-                # print(iface_details[netifaces.AF_INET][0]['addr'])
+        """
+        :return: all ip-addresses in class
+        """
 
     def add_ip_routes(self, ip_addr_mask, gateway, host_or_net):
-        try:
-            subprocess.call(f"sudo -S route add -{host_or_net} {ip_addr_mask} gw {gateway}", shell=True)
-            print('ok')
-            # os.system(f"sudo -S route add -net {ip_addr_mask} gw {gateway}")
-        except Exception as e:
-            print('exception', e)
+        """
+        :param ip_addr_mask:
+        :param gateway: 
+        :param host_or_net:
+        :return:
+        """
+        return 1
         # route add -net 10.10.0.0/16 gw 10.10.1.1
         # ip route add 10.10.0.0/16 via 10.10.1.1
 
     def del_ip_routes(self, ip_address, gateway, host_or_net):
-        return subprocess.call(f"sudo -S route delete -{host_or_net} {ip_address} gw {gateway}", shell=True)
+        """
+        :param ip_address:
+        :param gateway:
+        :param host_or_net:
+        :return:
+        """
+        return 1
         # route delete -net 10.10.0.0 netmask 255.255.0.0
 
     def show_ip_routes(self):
-        return subprocess.call("ip route", shell=True)
+        """
+        :return:
+        """
+        return 1
 
 
