@@ -26,9 +26,7 @@
 #
 # Итого - 1 интерфейс и 3 маршрута в таблице.
 
-import os
-import netifaces
-import subprocess
+import ipaddress
 
 
 class Router:
