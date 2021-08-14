@@ -11,26 +11,39 @@ hw21 A generator
 
 
 def merge(nums1, nums2):
-    """ A generator that combines two lists """
-    nums1 = list(nums1)
-    nums2 = list(nums2)
+    """ Generator combining two variable length lists """
+    def check_iter(iter_obj):
+        """ res = next(iter_obj) or None """
+        try:
+            res = next(iter_obj)
+        except StopIteration:
+            res = None
+        return res
 
-    while nums1 or nums2:
-        if nums1 and nums2:
-            if nums1[0] >= nums2[0]:
-                yield nums2[0]
-                nums2.remove(nums2[0])
-            elif nums1[0] < nums2[0]:
-                yield nums1[0]
-                nums1.remove(nums1[0])
-        elif nums1 and not nums2:
-            while nums1:
-                yield nums1[0]
-                nums1.remove(nums1[0])
-        elif nums2 and not nums1:
-            while nums2:
-                yield nums2[0]
-                nums2.remove(nums2[0])
+    first_iter, second_iter = next(nums1), next(nums2)
+
+    while first_iter or second_iter:
+        # Если оба итератора не None - работаем
+        if first_iter and second_iter:
+            if first_iter >= second_iter:
+                yield second_iter
+                second_iter = check_iter(nums2)
+
+            elif first_iter < second_iter:
+                yield first_iter
+                first_iter = check_iter(nums1)
+
+        # Если первый итератор не пуст, а второй пуст
+        elif first_iter and not second_iter:
+            while first_iter:
+                yield first_iter
+                first_iter = check_iter(nums1)
+
+        # Если второй итератор не пуст, а первый пуст
+        elif second_iter and not first_iter:
+            while second_iter:
+                yield second_iter
+                second_iter = check_iter(nums2)
 
 
 # Test
