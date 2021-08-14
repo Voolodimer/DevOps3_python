@@ -19,28 +19,23 @@ def merge(nums1, nums2):
         except StopIteration:
             res = None
         return res
-
     first_iter, second_iter = next(nums1), next(nums2)
-
-    while first_iter or second_iter:
+    while first_iter is not None or second_iter is not None:
         # Если оба итератора не None - работаем
-        if first_iter and second_iter:
+        if first_iter is not None and second_iter is not None:
             if first_iter >= second_iter:
                 yield second_iter
                 second_iter = check_iter(nums2)
-
             elif first_iter < second_iter:
                 yield first_iter
                 first_iter = check_iter(nums1)
-
         # Если первый итератор не пуст, а второй пуст
-        elif first_iter and not second_iter:
+        elif first_iter and second_iter is None:
             while first_iter:
                 yield first_iter
                 first_iter = check_iter(nums1)
-
         # Если второй итератор не пуст, а первый пуст
-        elif second_iter and not first_iter:
+        elif second_iter and first_iter is None:
             while second_iter:
                 yield second_iter
                 second_iter = check_iter(nums2)
@@ -57,4 +52,8 @@ print(next(a))
 print(next(a))
 print(list(a))
 a = merge((x for x in range(11, 25, 3)), (x for x in range(13, 24, 2)))
+print(list(a))
+x = merge((a for a in range(50)), (b for b in range(100)))
+print(list(x))
+a = merge((x for x in range(1, 4)), (x for x in range(2, 5)))
 print(list(a))
