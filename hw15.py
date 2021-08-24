@@ -103,12 +103,13 @@ class Router:
         if not flag:
             print(f'excepton - маршрут до {ip_address_mask} через {gateway} не может быть добавлен')
 
-    def del_ip_routes(self, ip_address_mask, gateway, host_or_net):
+    def del_ip_routes(self, ip_address_mask, iface):
         """
         delete routes
         """
         for el in self.routes_table:
-            if el['gateway'] == ipaddress.IPv4Interface(ip_address_mask).ip and el['interface'] == iface_name:
+            if el['gateway'] == ipaddress.IPv4Interface(ip_address_mask).ip and \
+                    el['netmask'] == ipaddress.IPv4Interface(ip_address_mask).netmask and el['interface'] == iface:
                 self.routes_table.remove(el)
 
     @visual_decorator
@@ -145,6 +146,10 @@ new_rout.show_ip_routes()
 for el in new_rout.routes_table:
     print(el)
 new_rout.show_ip_address()
+print('-')
+new_rout.show_ip_routes()
+new_rout.del_ip_routes('172.16.0.0/16', '192.168.5.1')
+new_rout.show_ip_routes()
 
 # Добавляем ip-address 192.168.5.14/24 eth1.
 # Добавляем маршрут до 172.16.0.0/16 через 192.168.5.1 - ok.
