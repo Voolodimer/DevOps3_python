@@ -9,13 +9,16 @@ def hw5():
     print('Введите список чисел: ')
     input_list = sorted((int(x) for x in input().split()))
     i = 0
+    # print(input_list)
     min_num = input_list[0]
+    if min_num > 1:
+        return min_num - 1
     while i <= len(input_list):
         if min_num not in input_list:
-            print(min_num)
-            break
+            return min_num
         i += 1
         min_num += 1
 
 
-hw5()
+
+print(hw5())
